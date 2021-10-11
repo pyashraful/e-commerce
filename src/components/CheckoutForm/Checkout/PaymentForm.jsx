@@ -10,14 +10,26 @@ import Review from "./Review";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
-const PaymentForm = ({ shippingData, checkoutToken, backStep }) => {
+const PaymentForm = ({
+  shippingData,
+  checkoutToken,
+  backStep,
+  onCaptureCheckout,
+  nextStep,
+}) => {
   const hendleSubmit = async (e, elements, stripe) => {
     e.preventDefault();
+    console.log("1st step");
+    console.log(elements);
+    console.log(stripe);
+
     if (!stripe || !elements) return;
+    if (!stripe || !elements) return;
+    console.log("2st step");
 
     const cardElement = elements.getElement(CardElement);
 
-    const { error, paymentMethod } = await stripe.create.paymentMethod({
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: cardElement,
     });
@@ -48,6 +60,9 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep }) => {
           },
         },
       };
+      onCaptureCheckout(checkoutToken.id, orderData);
+      console.log("hi");
+      nextStep();
     }
   };
 
@@ -60,14 +75,13 @@ const PaymentForm = ({ shippingData, checkoutToken, backStep }) => {
       </Typography>
       <Elements stripe={stripePromise}>
         <ElementsConsumer>
-          {(elements, stripe) => (
+          {({ elements, stripe }) => (
             <form onSubmit={(e) => hendleSubmit(e, elements, stripe)}>
               <CardElement />
               <br />
               <br />
               <div style={{ display: "flex", justifyContent: "spece-between" }}>
                 <Button variant="outline" onClick={backStep}>
-                  {" "}
                   back
                 </Button>
                 <Button
