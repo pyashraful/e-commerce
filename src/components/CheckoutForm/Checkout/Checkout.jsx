@@ -1,7 +1,6 @@
 import { React, useState, useEffect } from "react";
 import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
-import Confirmation from "./Confirmation";
 import {
   Paper,
   Stepper,
@@ -33,7 +32,6 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
           setCheckoutToken(token);
         } catch (error) {}
       };
-
       generateToken();
     }
   }, [cart]);

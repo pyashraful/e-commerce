@@ -111,9 +111,7 @@ const AddressFrom = ({ checkoutToken, next }) => {
     );
 
     setShippingOptions(options);
-    console.log(options[0].id);
     setShippingOption(options[0].id);
-    console.log(options[0].id);
   };
 
   useEffect(() => {
@@ -131,7 +129,7 @@ const AddressFrom = ({ checkoutToken, next }) => {
         shippingCountry,
         shippingSubdivision
       );
-  }, [shippingSubdivision]);
+  }, [checkoutToken.id, shippingCountry, shippingSubdivision]);
 
   ///
 
@@ -141,7 +139,16 @@ const AddressFrom = ({ checkoutToken, next }) => {
         Shipping Address
       </Typography>
       <FormProvider {...method}>
-        <form onSubmit={method.handleSubmit((data) => next({ ...data, shippingCountry, shippingSubdivision, shippingOption}) )}>
+        <form
+          onSubmit={method.handleSubmit((data) =>
+            next({
+              ...data,
+              shippingCountry,
+              shippingSubdivision,
+              shippingOption,
+            })
+          )}
+        >
           <Grid container spacing={3}>
             <FormInput name="firstname" label="First name" />
             <FormInput name="lastname" label="Last name" />
@@ -247,8 +254,14 @@ const AddressFrom = ({ checkoutToken, next }) => {
           </Grid>
           <br />
           <div style={{ display: "felx", justifyContent: "space-between" }}>
-            <Button component={Link} to="/cart" variant="outlined"> Back to Car </Button>
-            <Button type="submit" variant="contained"> Next </Button>
+            <Button component={Link} to="/cart" variant="outlined">
+              {" "}
+              Back to Car{" "}
+            </Button>
+            <Button type="submit" variant="contained">
+              {" "}
+              Next{" "}
+            </Button>
           </div>
         </form>
       </FormProvider>

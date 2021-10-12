@@ -50,6 +50,7 @@ function App() {
 
   const refreshCart = async () => {
     const newCart = await commerce.cart.refresh();
+
     setCart(newCart);
   };
 

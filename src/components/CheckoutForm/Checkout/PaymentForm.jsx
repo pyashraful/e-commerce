@@ -55,6 +55,7 @@ const PaymentForm = ({
           },
         },
       };
+      console.log(orderData);
       onCaptureCheckout(checkoutToken.id, orderData);
       nextStep();
     }
@@ -81,7 +82,7 @@ const PaymentForm = ({
                 <Button
                   type="submit"
                   variant="contained"
-                  disable={!stripe}
+                  disabled={!stripe}
                   color="primary"
                 >
                   pay {checkoutToken.live.subtotal.formatted_with_symbol}
