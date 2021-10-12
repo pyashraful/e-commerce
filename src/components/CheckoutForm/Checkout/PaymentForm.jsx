@@ -19,13 +19,8 @@ const PaymentForm = ({
 }) => {
   const hendleSubmit = async (e, elements, stripe) => {
     e.preventDefault();
-    console.log("1st step");
-    console.log(elements);
-    console.log(stripe);
-
     if (!stripe || !elements) return;
     if (!stripe || !elements) return;
-    console.log("2st step");
 
     const cardElement = elements.getElement(CardElement);
 
@@ -61,7 +56,6 @@ const PaymentForm = ({
         },
       };
       onCaptureCheckout(checkoutToken.id, orderData);
-      console.log("hi");
       nextStep();
     }
   };

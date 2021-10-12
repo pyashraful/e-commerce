@@ -50,7 +50,9 @@ const Checkout = ({ cart, onCaptureCheckout, order, error }) => {
     setShippingData(data);
     nextStep();
   };
-
+  const Confirmation = () => {
+    return <div></div>;
+  };
   const Form = () =>
     activeStep === 0 ? (
       <AddressForm checkoutToken={checkoutToken} next={next} />

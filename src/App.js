@@ -59,7 +59,7 @@ function App() {
         checkoutTokenId,
         newOrder
       );
-
+      console.log("hi");
       setOrder(incomingOrder);
       refreshCart();
     } catch (error) {
@@ -71,9 +71,6 @@ function App() {
     fetchProducts();
     fetchCart();
   }, []);
-
-  console.log(products);
-  console.log(cart);
 
   return (
     <div>
