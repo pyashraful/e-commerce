@@ -56,6 +56,7 @@ const PaymentForm = ({
         },
       };
       console.log(orderData);
+      console.log(checkoutToken.id);
       onCaptureCheckout(checkoutToken.id, orderData);
       nextStep();
     }
@@ -76,7 +77,7 @@ const PaymentForm = ({
               <br />
               <br />
               <div style={{ display: "flex", justifyContent: "spece-between" }}>
-                <Button variant="outline" onClick={backStep}>
+                <Button variant="outlined" onClick={backStep}>
                   back
                 </Button>
                 <Button
